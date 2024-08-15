@@ -1,201 +1,49 @@
 class CreateMatriz {
     constructor(size) {
         this.size = size;
-        this.matriz = this.initializeMatriz(size);
+        this.matriz = this._generateMatriz(size);
     }
 
-    initializeMatriz(size) {
-        let matriz = [];
-        for (let i = 0; i < size; i++) {
-            matriz[i] = [];
-            for (let j = 0; j < size; j++) {
-                matriz[i][j] = Math.floor(Math.random() * (99 - 10 + 1)) + 10;
-            }
-        }
-        return matriz;
-    }
+    // Método para generar la matriz aleatoria
+    _generateMatriz = (size) =>
+        Array.from({ length: size }, () => 
+            Array.from({ length: size }, () => Math.floor(Math.random() * 90) + 10)
+        );
 
-    toString() {
-        let matrizString = '';
-        for (let i = 0; i < this.size; i++) {
-            matrizString += this.matriz[i].join(' ') + '\n'; // Usa join para convertir el array a un string
-        }
-        return matrizString;
+    // Método para convertir la matriz a string
+    toString = () => 
+        this.matriz.map(row => row.join(' ')).join('\n');
+
+    // Método reutilizable para imprimir un patrón
+    printPattern = (condition) => {
+        const matrizString = this.matriz.map((row, i) =>
+            row.map((val, j) => condition(i, j) ? val.toString().padStart(3, ' ') : ' '.repeat(3))
+                .join(' ')
+        ).join('\n');
+        console.log(matrizString);
     }
 }
 
-let matriz1 = new CreateMatriz(3);
+// Crear una instancia de la matriz
+const matriz1 = new CreateMatriz(4);
 console.log("Matriz original:\n" + matriz1.toString());
 
-const diagonal = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (i === j) {
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
+// Funciones para imprimir diferentes patrones
+const diagonal = (matriz) => matriz.printPattern((i, j) => i === j);
+const diagonalInvertida = (matriz) => matriz.printPattern((i, j) => i + j === matriz.size - 1);
+const rectanguloSuperiorDerecho = (matriz) => matriz.printPattern((i, j) => i <= j);
+const rectanguloInferiorIzquierdo = (matriz) => matriz.printPattern((i, j) => i >= j);
+const trianguloSuperiorIzquierdo = (matriz) => matriz.printPattern((i, j) => i >= j);
+const trianguloInferiorIzquierdo = (matriz) => matriz.printPattern((i, j) => i + j >= matriz.size - 1);
+const trianguloInferiorIzquierdoEspejo = (matriz) => matriz.printPattern((i, j) => j <= i && i >= j);
+const trianguloSuperiorDerecho = (matriz) => matriz.printPattern((i, j) => i <= j);
+const rectanguloSuperiorIzquierdo = (matriz) => matriz.printPattern((i, j) => i + j < matriz.size);
+const rectanguloInferiorDerecho = (matriz) => matriz.printPattern((i, j) => j >= matriz.size - i - 1);
 
-const diagonalInvertida = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (i + j === matriz.size - 1) {
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
-
-const rectanguloSuperiorDerecho = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (i <= j) {
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
-
-const rectanguloInferiorIzquierdo = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (i >= j) {
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
-
-const trianguloSuperiorIzquierdo = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (i >= j) {
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
-
-const trianguloInferiorIzquierdo = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (i + j >= matriz.size - 1) {
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
-
-const rectanguloInferiorDerecho = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (j >= matriz.size - i - 1) {
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
-
-const trianguloInferiorIzquierdoEspejo = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (j <= i) {
-                rowString += matriz.matriz[matriz.size - i - 1][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
-
-const trianguloSuperiorDerecho = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (i <= j) {
-                // Imprime el valor del triángulo superior derecho y mínimo tienen 3 espacios cada número
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                // Imprime espacios en blanco donde no está el triángulo superior derecho
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
-
-const rectanguloSuperiorIzquierdo = (matriz) => {
-    let matrizString = '';
-    for (let i = 0; i < matriz.size; i++) {
-        let rowString = '';
-        for (let j = 0; j < matriz.size; j++) {
-            if (i + j < matriz.size) {
-                rowString += matriz.matriz[i][j].toString().padStart(3, ' ') + ' ';
-            } else {
-                rowString += ' '.repeat(3) + ' ';
-            }
-        }
-        matrizString += rowString + '\n';
-    }
-    console.log(matrizString);
-};
 // Ejecución de las funciones
 diagonal(matriz1);
 diagonalInvertida(matriz1);
 rectanguloSuperiorIzquierdo(matriz1);
+rectanguloInferiorDerecho(matriz1);
 rectanguloSuperiorDerecho(matriz1);
 rectanguloInferiorIzquierdo(matriz1);
-rectanguloInferiorDerecho(matriz1);
-
-
-
-

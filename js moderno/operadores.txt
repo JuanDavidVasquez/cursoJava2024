@@ -1,0 +1,70 @@
+### 1. Operadores aritméticos
+- `+` : Suma
+- `-` : Resta
+- `*` : Multiplicación
+- `/` : División
+- `%` : Módulo (resto de la división)
+- `++` : Incremento
+- `--` : Decremento
+- `**` : Exponenciación
+
+### 2. Operadores de asignación
+- `=` : Asignación
+- `+=` : Suma y asigna
+- `-=` : Resta y asigna
+- `*=` : Multiplica y asigna
+- `/=` : Divide y asigna
+- `%=` : Módulo y asigna
+- `**=` : Exponencia y asigna
+
+### 3. Operadores de comparación
+- `==` : Igualdad
+- `===` : Igualdad estricta
+- `!=` : Desigualdad
+- `!==` : Desigualdad estricta
+- `>` : Mayor que
+- `>=` : Mayor o igual que
+- `<` : Menor que
+- `<=` : Menor o igual que
+
+### 4. Operadores lógicos
+- `&&` : AND lógico
+- `||` : OR lógico
+- `!` : NOT lógico
+
+### 5. Operadores bit a bit
+- `&` : AND a nivel de bits
+- `|` : OR a nivel de bits
+- `^` : XOR a nivel de bits
+- `~` : NOT a nivel de bits
+- `<<` : Desplazamiento a la izquierda
+- `>>` : Desplazamiento a la derecha
+- `>>>` : Desplazamiento a la derecha sin signo
+
+### 6. Operadores condicionales
+- `?:` : Operador ternario (condicional)
+
+### 7. Operadores de cadena
+- `+` : Concatenación de cadenas
+- `+=` : Concatenación y asignación
+
+### 8. Operadores de tipo
+- `typeof` : Retorna el tipo de un operando
+- `instanceof` : Verifica si un objeto es una instancia de una clase
+- `in` : Verifica si una propiedad está en un objeto
+- `delete` : Elimina una propiedad de un objeto
+
+### 9. Operador de propagación/rest
+- `...` : Propagación o agrupación de valores
+
+### 10. Operador de coma
+- `,` : Evalúa múltiples expresiones y devuelve el resultado de la última
+
+### 11. Operador de coalescencia nula
+- `??` : Retorna el operando de la derecha si el operando de la izquierda es `null` o `undefined`
+
+### 12. Operador de encadenamiento opcional
+- `?.` : Permite acceder a propiedades profundamente anidadas sin verificar si cada referencia en la cadena existe
+
+### 13. Operador de agrupación
+- `()` : Agrupa expresiones para definir el orden de evaluación
